@@ -1,7 +1,7 @@
 \documentclass[a4paper]{article}
 
 \makeatletter
-\title{Algebraic Topology}\let\Title\@title
+\title{Istituzioni di Geometria}\let\Title\@title
 \author{Andrea Gallese}\let\Author\@author
 \date{\today}\let\Date\@date
 
@@ -10,7 +10,7 @@
 \begin{document}
 	\Intitola
 
-\begin{ex}[1]
+\begin{ex}[1.1]
 	Consideriamo due atlanti costituiti dalle singole carte $$  \varphi(x) = x \qquad\text{ e }\qquad \psi(x) = \begin{cases}
 	x \quad \text{ se } x \geq 0, \\
 	2x \quad \text{se } x < 0.
@@ -18,7 +18,7 @@
 	Questi sono atlanti banalmente: le carte sono chiaramente omeomorfismi ed essendo uniche non c'è altro da verificare. I due atlanti non sono però compatibili: infatti la funzione di transizione $ \psi \varphi^{-1} $ è continua ma non liscia. La funzione $ \psi^{-1} $ tuttavia, letta in carte, coincide con l'identità su $ \R $ ed è pertanto un diffeomorfismo.
 \end{ex}
 
-\begin{ex}[2]
+\begin{ex}[1.2]
 	L'esistenza della struttura liscia si ottiene come al solito facendo salire la struttura: ogni carta $ \varphi\colon U \to \R^n $ di $ N $ si solleva a una carta $ \varphi \circ f \colon f^{-1}(U) \to \R^n $; queste sono omoeomorfismi perché composizione di omeomorfismi e si incollano perché il sollevamento è coerente: $$  (\varphi_i \circ f) \circ (\varphi_j \circ f)^{-1} = \varphi_i \circ \varphi_j^{-1}, $$
 	che sappiamo essere lisce per ipotesi. \\
 	
@@ -29,10 +29,22 @@
 	è liscia in entrambe le direzioni! Ma chiedere che l'identità sia liscia è proprio equivalente a chiedere che le mappe di transizione tra le carte lo siano: $ \varphi \circ id_M \circ \psi^{-1} = \varphi\circ\psi^{-1} $ per ogni coppia di carte $ (\varphi, \, \psi) $ in atlanti diversi, ovvero che i due atlanti siano compatibili.
 \end{ex}
 
-\begin{ex}[4]
+\begin{ex}[1.4]
 	Osserviamo che $ dp_z= p'(z) $, dunque che $ p $ è un locale diffeomorfismo su tutti i punti in cui la derivata non si annulla, ossia su $ \C \setminus S $. La controimmagine di punto $ w \in \C \setminus p(S) $ conta esattamente $ d $ punti, infatti questi sono gli zeri di $ q(z) = p(z)-w $, che non può avere radici doppie perché la sua derivata $ q' = p' $ si annulla solo in $ p^{-1}(p(S)) $ e che deve avere $ d $ radici per il teorema fondamentale dell'algebra. \\
 	
 	Da qui la conclusione è puramente topologica: prendiamo $ \varphi_i\colon U_i \to W_i $ locali diffeomorfismi da intorni delle $ d $ radici di $ q $ ad altrettanti intorni di $ w $, intersechiamo questi intorni per ottenere un unico $ W = \bigcap_{i = 1}^d W_i $. Restringendo i diffeomorfismi di sopra otteniamo diffeomorfismi $ \varphi_i\colon \varphi_i^{-1}(W) \to W $, mostrando in particolare che $ W $ è un aperto banalizzante di $ w $; concludiamo per arbitrarietà del punto $ w $.
+\end{ex}
+
+\begin{ex}[2.1]
+	Sia $ f\colon M to N $ la mappa in questione. Un embedding è un'immersione iniettiva che è un omeomorfismo sull'immagina: restringendo il codominio all'immagine $ im f $ possiamo supporre $ f $ bigettiva, dunque dobbiamo solo mostrare che $ f^{-1} $ è continua. Essendo $ f(M) \subseteq N $ compattamente generato, i suoi compatti formano un ricoprimento fondamentale: è sufficiente mostrare che $ f^{-1} $ è continua ristretta ogni compatto $ K $ di $ N $; d'altra parte la sua inversa $ f\colon f^{-1}(K) \to K $ è una funzione continua da un compatto a un Hausdorff e, pertanto, chiusa.
+\end{ex}
+
+\begin{ex}[2.3]
+	Un sottoinsieme $ M \subseteq N $ di una varietà liscia è una sottovarietà se e solo se l'immersione $ i_M\colon M \hookrightarrow N $ è un embedding: un'implicazione è l'esercizio precedente e il viceversa è una proposizione enunciata in classe. La tesi segue osservando che la composizione di embedding rimane tale.
+\end{ex}
+
+\begin{ex}[2.4]
+	Poiché essere aperta è una proprietà locale è sufficiente verificarlo in carta, dove le sommersioni sono funzioni lisce con differenziale full-rank, pertanto aperte per il teorema della mappa aperta. Un'eventuale sommersione $ f \colon M \to \R^k $ avrebbe immagine $ f(M) $ sia aperta (per quanto appena mostrato) che compatta (perché continua), ovvero vuota.
 \end{ex}
 
 \end{document}
