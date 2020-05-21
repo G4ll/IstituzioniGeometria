@@ -1,0 +1,184 @@
+\documentclass[a4paper]{article}
+
+\makeatletter
+\title{Istituzioni di Geometria}\let\Title\@title
+\author{Andrea Gallese}\let\Author\@author
+\date{\today}\let\Date\@date
+
+\usepackage{Gallo}
+
+\renewcommand{\P}{\mathbb{P}}
+
+\begin{document}
+	\Intitola
+	
+\begin{ex}[6.2]{Considera il toro $T = \S^1 \times \S^1 $ con coordinate $ (\theta^1, \theta^2) $ e la 1-forma $ \omega = d\theta^1 $. Considera la 1-sottovarietà $ \gamma_i  = \{\theta^i = 0 \} $ per $ i $ = 1, 2, orientata come $ \S^1 $. Mostra che \[\int_{\gamma_1} \omega =0, \qquad\qquad \int_{\gamma_2} \omega =2\pi.  \] }
+	Consideriamo l'embedding
+	\begin{align*}
+		i_1 \colon (0, 2\pi) & \to T \\
+		t &\mapsto (t, 0)
+	\end{align*}
+	la cui immagine coincide con la varietà $ \gamma_1 $ a meno di un insieme misurabile (il punto (0, 0)) e il cui differenziale è, banalmente, $ (1, 0) $. Abbiamo dunque che
+	\[ \int_{\gamma_1} d\theta^1 = \int_{(0, 2\pi)} (i_1)_*d\theta^1 = \int_0^{2\pi} d\theta^1 \circ di_1 \]
+	
+	% bisogna scrivere qualcosa in più
+\end{ex}
+
+\begin{ex}[6.3]{Sia $ f \colon U \to V $ una mappa liscia fra aperti $ U \subseteq \R^m $ e $ V \subseteq \R^n $. Scriviamo $ f = (f_1, \dots, f_n). $ Per non confonderci usiamo variabili diverse
+		$ (x^1, \dots, x^n) \in \R^n$
+		e $ (y^1, \dots, y^	m) \in \R^m$. Mostra che
+		\[ f^*(dx^i)= \frac{\partial f_i}{\partial y^j}dy^j = df_i. \]}
+	É sufficiente esplicitare la definizione di pullback e di differenziale di una funzione $\R^m \to \R^n$; per ogni $(p, v) \in TU$ si ha che
+	\begin{align*}
+		f^\ast(dx^i)_p(v) & = dx^i_{f(p)}(df_pv)
+		& \text{per definizione di pullback,} \\
+		& = dx^i_{f(p)}(Jf(p)v)
+		& \text{che è il nome del differeniale in } \R^n, \\
+		& = \langle \nabla f_i(p), v  \rangle
+		& dx^i\text{ seleziona l'i-esima componente}.
+	\end{align*}
+	Il gradiente della componente $f_i$ altro non è che il suo differenziale, che peraltro sappiamo scrivere in componenti:
+	\begin{align*}
+	\langle \nabla f_i(p), v  \rangle & = \frac{\partial f_i}{\partial y^j}(p)v_j \\
+	&= \frac{\partial f_i}{\partial y^j}(p)dy^j(v) \\
+	&= \left[\frac{\partial f_i}{\partial y^j}dy^j\right]_p(v). \\
+	\end{align*}
+	Dall'arbitrarietà di $ (p, v) $ segue la tesi.
+\end{ex}
+
+\begin{ex}[6.4]{Sia $ N $ una $ m $-varietà senza bordo. Se $ \varphi\colon M \to N $ è una mappa
+		liscia e $ \omega \in \Omega^k(N) $, otteniamo
+		\[d(\varphi^\ast \omega) = \varphi^\ast(d\omega). \]}
+	Iniziamo a mostrare che la tesi è vera nel caso $ \omega = f \in \Omega^0(N) $ sia una funzione liscia. Per ogni $ (p, v) \in M $ abbiamo che
+	\begin{align*}
+		[\varphi^*(df)]_p(v) &= df_{\varphi(p)}(d\varphi_p v) &\text{per definizione di pullback di 1-forme,}\\
+		&= d(f\varphi)_p(v) &\text{per la chain rule,}\\
+		&= d(\varphi^*f)_p(v) &\text{per definizione di pullback di funzioni}.
+	\end{align*}
+	Nel caso $\omega = dg$ sia una 1-forma esatta, entrambi i membri dell'uguaglianza sono nulli: quello destro perché prende il differenziale della forma esatta, quello sinistro perché da quanto appena mostrato segue che
+	\[ d(\varphi^*(dg)) = d(d(\varphi^*g)) = 0. \]
+	Osserviamo ora che non ci resta molto oltre da dimostrare: possiamo scrivere ogni k-forma $\omega \in \Omega^k(M)$ come prodotto esterno di funzioni lisce e 1-forme esatte! Sappiamo infatti che esistono $ F_{(i_1, \dots, i_k)} \in \Omega^0(M) $ tali che
+	\[ \omega = \sum_{i_1 < \dots < i_k} F_{(i_1, \dots, i_k)} \; dx^{i_1} \wedge  \dots  \wedge dx^{i_k}. \]
+	Per concludere, osserviamo che la formula che vogliamo dimostrare è lineare e si comporta bene rispetto prodotto esterno, nel senso che se per due forme qualunque $ \omega $ ed $ \eta $ è verificata, allora è verificata per $ \omega \wedge \eta $:
+	\begin{align*}
+		\varphi^*d(\omega \wedge \eta)
+		&= \varphi^*\left(d\omega \wedge \eta + (-1)^{ij}\omega \wedge d\eta\right)
+		& \text{espandendo il differenziale del prodotto,} \\
+		&= \varphi^*\left(d\omega \wedge \eta\right) + (-1)^{ij}\varphi^*\left(\omega \wedge d\eta\right)
+		& \text{per linearità del pullback,} \\
+		&= \varphi^*(d\omega) \wedge \varphi^*(\eta) + (-1)^{ij}\varphi^*(\omega) \wedge \varphi^*(d\eta) & \\
+		&= d(\varphi^*\omega) \wedge \varphi^*(\eta) + (-1)^{ij}\varphi^*(\omega) \wedge d(\varphi^*\eta) & \text{per ipotesi induttiva,} \\
+		&= d\left(\varphi^*(\omega) \wedge \varphi^*(\eta)\right) & \text{raccogliendo il differenziale del prodotto.}
+	\end{align*}
+\end{ex}
+
+\begin{ex}[7.1]{Sia $ E \to M $ un fibrato vettoriale. Mostra che le due varietà $ E $ e $ M $ sono omotopicamente equivalenti.}
+	
+	Sia $ s_0 \colon M \hookrightarrow E $ la sezione nulla del fibrato vettoriale; per definizione $ \pi s_0 = id_M $, mostriamo quindi che $ s_0\pi $ è omotopicamente equivalente all'identità di $ E $.
+	Chiamiamo $ H_t\colon E \to E $ la mappa che moltiplica ogni fibra per $ t \in \R $: questa si può definire sopra ogni aperto banalizzante $ \pi^{-1}(U) = U \times \R^n $, mandando $ (p, v) \mapsto (p,tv) $, per poi constatare che sulle intersezioni le definizione coincidono (perché le mappe di transizione sono isomorfismi lineari sulle fibre e pertanto commutano con la moltiplicazione per scalare). $ H_t $ è continua in $ x \in E $ e in $ t \in \R $, perché lo è localmente, ed è l'omotopia che stavamo cercando: infatti $ H_1 = id_E $ e $ H_0 = s_0\pi. $ 
+\end{ex}
+
+%\begin{ex}[7.4]{Sia $ M\#N $ la somma connessa di due varietà connesse, orientate, compatte e senza bordo. Dimostra le uguaglianze seguenti:
+%	\begin{align*}
+%		b^i(M\#N) = 1 \qquad \text{se } \; i = 0, \, n, \\
+%		b^i(M\#N) = b^i(M) + b^i(N) \qquad \text{se } \; 0< i<n.
+%	\end{align*} 
+%	Puoi usare l’esercizio precedente. Deduci che i numeri di Betti della superficie
+%	$ S_g $ di genere $ g $ sono
+%	\[ b^0(S_g) = 1, \qquad b^1(S_g)=2g, \qquad b^2(S_g) = 1. \]}
+%	Siano $ f\colon \R^n \to M $ e $ g \colon \R^n \to N $ gli embedding lungo i quali stiamo incollando le due varietà. L'aperto $ U = \left(M \# N\right)\setminus \left(N \setminus g(\R^n)\right) $, ottenuto togliendo $ N $, ma lasciando la zona di incollamento, si ritrae per deformazione su $ M \setminus f(D^n) $; poiché la varietà senza un punto si ritrae per deformazione sulla varietà senza un disco, l'esercizio precedente ci fornisce i numeri di betti di $ U $:
+%	\[ b^i(U) = b^i(M) \quad \forall\, i<n, \qquad b^{n}(U) = b^{n}(M)-1.  \]
+%	Analoghe considerazioni valgono su $ V = \left(M \# N\right)\setminus \left(M \setminus f(\R^n)\right) $, che si ritrae per deformazione su $ N \setminus g(D^n) $. Consideriamo la successione di Mayer-Vietoris associata al ricoprimento $ \{ U, V\} $:
+%	\[ \begin{tikzcd}[column sep = small]
+%	\dots \rar & \HH^{i-1}(U \cap V) \rar & \HH^{i}(M \# N) \rar & \HH^{i}(U)\oplus \HH^{i}(V) \rar & \HH^{i}(U \cap V) \rar  & \dots
+%	\end{tikzcd}  \]
+%	Per definizione, l'aperto $ U \cap V $ è diffeomorfo a $ \R^n \setminus D^n $; si retrae dunque per deformazione su $ \S^{n-1} $, di cui conosciamo la coomologia. Nella successione esatta lunga di sopra troviamo dunque
+%	\[ \begin{tikzcd}[column sep = small]
+%	0 \rar & \HH^i(M \# N) \rar & \HH^i(U)\oplus \HH^i(V) \rar & 0 & \qquad \forall\, 0 < i < n-1,
+%	\end{tikzcd}  \]
+%	da cui deduciamo che
+%	\[ b^i(M \# N) = b^i(U) + b^i(V) = b^i(M) + b^i(N) \qquad \forall\, 0 < i < n-1.  \]
+%	Inoltre la successione inizia con
+%	\[ \begin{tikzcd}[column sep = small]
+%	0 \rar & \HH^{0}(M \# N) \rar & \HH^{0}(U)\oplus \HH^{0}(V) \rar & \HH^{0}(U \cap V) \rar  & \dots
+%	\end{tikzcd}  \]
+%	e finisce con 
+%	\[ \begin{tikzcd}[column sep = small]
+%	\dots \rar & \HH^{n-1}(U \cap V) \rar & \HH^{i}(M \# N) \rar & \HH^{i}(U)\oplus \HH^{i+1}(V) \rar & \HH^{i}(U \cap V) \rar  & \dots
+%	\end{tikzcd}  \]
+%	
+%\end{ex}
+
+\begin{ex}[7.6]{Dimostra che la superficie $ \C \setminus \Z $ ha $ b^1 = \infty $.}
+	
+	Una famiglia infinita di 1-forme linearmente indipendenti chiuse ma non esatte è composta dalle forme
+	\[ \frac{dz}{z-n} \qquad \text{al variare di $ n $ in $ \Z $}. \]
+	Che siano chiuse e non esatte è chiaro: $ dz/z $ lo è di fama, le altre ne sono solo una traslazione. Mostriamo che sono linearmente indipendenti: supponiamo che esistano $ \alpha_1,\,\dots, \,  \alpha_r $ tali che
+	\[ \alpha_1\,\frac{dz}{z-n_1} + \dots + \alpha_r\,\frac{dz}{z-n_r} = 0;  \]
+	possiamo integrare questa forma lungo un cerchio di raggio $ 1/2 $ attorno ad $ n_i $ per ottenere
+	\[ \alpha_i 2\pi i = \alpha_i \int_{\gamma_i} \frac{dz}{z-n_i} = \int_{\gamma_i} \alpha_1\,\frac{dz}{z-n_1} + \dots + \alpha_r\,\frac{dz}{z-n_r} = 0, \]
+	da cui deduciamo che $ \alpha_i = 0 $ per ogni $ i $.
+\end{ex}
+
+\begin{ex}[7.7]{Sia $ K \subseteq \S^3 $ un nodo. Mostra che $ H^1(\S^3 \setminus K) \simeq \R $.}
+	
+	Consideriamo un intorno tubolare $ K \subseteq T $ del nodo e scriviamo la successione di MV associata al ricoprimento di $ \S^3 $ formato dagli aperti $ U=T $ e $ V=\S^3\setminus K $
+	\[ \begin{tikzcd}[column sep = small]
+	0 = \HH^{1}(\S^3) \rar & \HH^{1}(T)\oplus \HH^{1}(\S^3\setminus K) \rar & \HH^{1}(U \cap V) \rar  & \HH^{2}(\S^3)=0;
+	\end{tikzcd}  \]
+	l'intersezione $ U \cap V $ è, per definizione, omeomorfa al toro $ (\S^1 \times \R^2) \setminus (\S^1 \times 0) $. Dalla successione di sopra deduciamo dunque che
+	\[ b^1(\S^3\setminus K) = b^1(U \cap V) - b^1(T) = 2-1 = 1. \]
+\end{ex}
+
+\begin{ex}[8.2]{Siano $ M $ e $ N $ due varietà compatte con bordo e $ \varphi: \partial M \to \partial N $ un diffeomorfismo. Sia $ W $ ottenuta incollando $ M $ con $ N $ via $ \varphi $. Mostra che
+		\[\chi(W) = \chi(M) + \chi(N) - \chi(\partial M).\]}
+	Sia $ A $ un intorno tubolare di $ \partial M $ in $ W $, questo, per definizione, si retrae per deformazione su $ \partial M $ e gli è pertanto omotopicamente equivalente. Scriviamo la successione di MV associata al ricoprimento aperto dato da $ U = M \cup A $ e $ N \cup A $; questi aperti sono omotopicamente equivalenti a, rispettivamente, $ M $ e $ N $ e la loro intersezione è proprio $ A $. \\
+	
+	Applicando l'esercizio 7.2 alla successione di MV in questione scopriamo che la somma a segni alterni delle dimensioni degli spazi che vi compaiono è nulla:
+	\[ \sum_k (-1)^k \left(\dim\HH^k(W)- \dim\HH^k(M)\oplus\HH^k(N) + \dim\HH^k(\partial M)\right) = 0 .  \]
+	Poiché i gruppi di coomologia di $ W $ appaiono con segni alterni, possiamo raccoglierne la caratteristica di Eulero! Rimaniamo con
+	\[ \chi(W) = \sum_k (-1)^k \dim\HH^k(W) = \sum_k (-1)^k \left( \dim\HH^k(M)+ \dim\HH^k(N) - \dim\HH^k(\partial M)\right)  \]
+	che è proprio l'uguaglianza cercata.
+%	, infatti possiamo raccogliere a destra la caratteristica di Eulero degli oggetti a cui siamo interessati:
+%	\[ \sum_k (-1)^k \dim\HH^k(M)+ \sum_k (-1)^k\dim\HH^k(N) -\sum_k (-1)^k \dim\HH^k(\partial M) = \chi(M)+\chi(N)-\chi(\partial M). \]
+\end{ex}
+
+\begin{ex}[8.3]{Siano $ M $ e $ N $ varietà con coomologia finito-dimensionale. Dimostra che
+		\[\chi(M \times N) = \chi(M) \cdot \chi(N).\]}
+	La tesi è una conseguenza della Formula di Kunneth: questa, per ogni $ k \geq 0 $, fornisce un isomorfismo 
+	\[ \HH^k(M \times N) \simeq \bigoplus_{p+q=k} \HH^p(M) \otimes \HH^q(N) \]
+	che lega i numeri di Betti del prodotto a quelli dei due fattori:
+	\[ b^k(M \times N) = \sum_{p+q = k} b^p(M) b^q(N). \]
+	Osservato questo, è sufficiente compiere lo sforzo di riordinare i termini della sommatoria che definisce la caratteristica di Eulero:
+	\begin{align*}
+		\chi(M \times N) &=\sum_{k=0}^{m+n} (-1)^kb^k(M \times N)\\
+		&= \sum_{k=0}^{m+n} (-1)^k \sum_{p+q = k} b^p(M) b^q(N)\\
+		&= \sum_{k=0}^{m+n} \sum_{p+q = k} (-1)^{p+q}b^p(M) b^q(N)\\
+		&= \left( \sum_{p=0}^m (-1)^pb^p(M) \right) \cdot \left( \sum_{q=0}^n (-1)^qb^q(N) \right),\\
+		&= \chi(M) \cdot \chi(N).
+	\end{align*}
+\end{ex}
+
+\begin{ex}[8.7]{Considera lo spazio iperbolico nel modello del semispazio:
+	\[ \mathbb{H}^n = \{ x \in \R^n \mid x_n> 0 \}, \qquad g(x) = \frac{1}{x_n^2} g^E(x). \]
+	Qui $ g^E $ è il tensore euclideo. In altre parole
+	\[ g_{ij} (x) = \frac{1}{x_n^2}\delta_{ij}. \] 
+	Mostra che le mappe seguenti sono isometrie per la varietà riemanniana $ \mathbb{H}^n $:
+	\begin{itemize}
+		\item[\textbullet] $ f (x) = x + b $, con $ b = (b_1, \dots , b_{n-1}, 0) $;
+		\item[\textbullet] $ f (x) = \lambda x $ con $ \lambda > 0 $.
+	\end{itemize}
+	Deduci che il gruppo di isometrie Isom($ \mathbb{H}^n $) di $ \mathbb{H}^n $ agisce transitivamente sulla
+	varietà riemanniana $ \mathbb{H}^n $.}
+	
+	Dobbiamo mostrare che per ogni scelta di $ x \in \mathbb{H}^n $ e ogni coppia di vettori nel suo tangente $ v, \, w \in T_x\mathbb{H}^n $ si ha che
+	$$  df_x(v)^idf_x(w)^jg_{ij}(f(x)) = v^iw^jg_{ij}(x).  $$
+	Nel primo caso, il differenziale di $ f $ è l'identità in ogni punto e $ g(x+b)=g(x) $ perché non sto modificando la componente $ n $-esima, dunque l'uguaglianza è soddisfatta.
+	Nel secondo caso, il differenziale corrisponde alla moltiplicazione per $ \lambda $, mentre il tensore metrico cambia per uno scalare
+	$$  g(\lambda x) = \frac{1}{(\lambda x_n)^2}\, g^E(x) = \frac{1}{\lambda^2}\, g(x);  $$
+	andando a sostituire al LHS dell'equazione che vogliamo verificare, scopriamo che non stiamo facendo altro che moltiplicare $ \lambda $ due volte al numeratore e due volte al denominatore, di fatto cambiando niente.\\
+	
+	Poiché la composizione di isometrie rimane tale, deduciamo che il gruppo di isometrie Isom($ \mathbb{H}^n $) di $ \mathbb{H}^n $ agisce transitivamente sulla varietà riemanniana $ \mathbb{H}^n $: infatti presi $ x,\, y \in \mathbb{H}^n $, possiamo mandare $ x $ in $ y $ moltiplicando per $ \lambda = y_n/x_n $ e poi traslando per $$  b = y - \lambda x_n = (y_1-\lambda x_1, \dots, y_{n-1}-\lambda x_{n-1}, 0).  $$ 
+\end{ex}
+
+\end{document}

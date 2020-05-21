@@ -10,41 +10,59 @@
 \begin{document}
 	\Intitola
 
-\begin{ex}[1.1]
+\begin{ex}[1.1]{Costruisci due atlanti lisci non compatibili su $ \R $. Mostra che le due varietà lisce che ne risultano sono però diffeomorfe.}
+	
 	Consideriamo due atlanti costituiti dalle singole carte $$  \varphi(x) = x \qquad\text{ e }\qquad \psi(x) = \begin{cases}
 	x \quad \text{ se } x \geq 0, \\
 	2x \quad \text{se } x < 0.
 	\end{cases}  $$
-	Questi sono atlanti banalmente: le carte sono chiaramente omeomorfismi ed essendo uniche non c'è altro da verificare. I due atlanti non sono però compatibili: infatti la funzione di transizione $ \psi \varphi^{-1} $ è continua ma non liscia. La funzione $ \psi^{-1} $ tuttavia, letta in carte, coincide con l'identità su $ \R $ ed è pertanto un diffeomorfismo.
+	Questi sono atlanti banalmente: le carte sono chiaramente omeomorfismi ed essendo uniche non c'è altro da verificare. I due atlanti non sono però compatibili: infatti la funzione di transizione $ \psi \varphi^{-1} $ è continua ma non liscia. La funzione $ \psi^{-1} $ tuttavia, letta in carte, coincide con l'identità su $ \R $ ed è pertanto un diffeomorfismo. Si faccia riferimento al seguente diagramma, le cui freccie verticali sono carte:
+	\[\begin{tikzcd}
+	\R \rar["\psi^{-1}"]\dar["\varphi"] & \R \dar["\psi"] \\
+	\R \rar[dashed, "id_{\R}"] & \R.
+	\end{tikzcd} \]
 \end{ex}
 
-\begin{ex}[1.2]
-	L'esistenza della struttura liscia si ottiene come al solito facendo salire la struttura: ogni carta $ \varphi\colon U \to \R^n $ di $ N $ si solleva a una carta $ \varphi \circ f \colon f^{-1}(U) \to \R^n $; queste sono omoeomorfismi perché composizione di omeomorfismi e si incollano perché il sollevamento è coerente: $$  (\varphi_i \circ f) \circ (\varphi_j \circ f)^{-1} = \varphi_i \circ \varphi_j^{-1}, $$
-	che sappiamo essere lisce per ipotesi. \\
+\begin{ex}[1.2]{Siano $ M $ e $ N $ due varietà topologiche e $ f \colon M \to N $ un omeomorfismo. Data una struttura liscia su $ N $, esiste un’unica struttura liscia su $ M $ tale che $ f $ sia un diffeomorfismo.}
+	
+	L'esistenza della struttura liscia si ottiene come al solito {\textquotedblleft sollevando\textquotedblright} la struttura: ogni carta $ \varphi\colon U \to \R^n $ di $ N $ si solleva a una carta $ \varphi \circ f \colon f^{-1}(U) \to \R^n $; queste sono omoeomorfismi perché composizione di omeomorfismi e si incollano perché il sollevamento è coerente: $$  (\varphi_i \circ f) \circ (\varphi_j \circ f)^{-1} = \varphi_i \circ \varphi_j^{-1}, $$
+	che sappiamo essere lisce per ogni $ i, \, j $ per ipotesi. \\
 	
 	Occupiamoci ora dell'unicità. Supponiamo di aver dato due diverse strutture lisce $ M $, $ M' $. La composizione di diffeomorfismi rimane tale, dunque l'identità
 	\[\begin{tikzcd}
 	id_M \colon M \rar["f"] & N \rar["f^{-1}"] & M
 	\end{tikzcd}  \]
-	è liscia in entrambe le direzioni! Ma chiedere che l'identità sia liscia è proprio equivalente a chiedere che le mappe di transizione tra le carte lo siano: $ \varphi \circ id_M \circ \psi^{-1} = \varphi\circ\psi^{-1} $ per ogni coppia di carte $ (\varphi, \, \psi) $ in atlanti diversi, ovvero che i due atlanti siano compatibili.
+	è liscia in entrambe le direzioni! Ma chiedere che l'identità sia liscia è proprio equivalente a chiedere che le mappe di transizione tra le carte dell'uno e dell'altro lo siano: abbiamo infatti che $ \varphi \circ id_M \circ \psi^{-1} = \varphi\circ\psi^{-1} $ per ogni coppia di carte $ (\varphi, \, \psi) $ in atlanti diversi, ovvero che i due atlanti siano compatibili.
 \end{ex}
 
-\begin{ex}[1.4]
-	Osserviamo che $ dp_z= p'(z) $, dunque che $ p $ è un locale diffeomorfismo su tutti i punti in cui la derivata non si annulla, ossia su $ \C \setminus S $. La controimmagine di punto $ w \in \C \setminus p(S) $ conta esattamente $ d $ punti, infatti questi sono gli zeri di $ q(z) = p(z)-w $, che non può avere radici doppie perché la sua derivata $ q' = p' $ si annulla solo in $ p^{-1}(p(S)) $ e che deve avere $ d $ radici per il teorema fondamentale dell'algebra. \\
+\begin{ex}[1.4]{Sia $ p(z) \in \C[z] $ polinomio di grado $ d \geq 1 $. Considera l’insieme $ S = \{z \mid p'(z)=0\} $. Mostra che la mappa
+		\begin{align*}
+			p\colon  \C \setminus p^{-1}(p(S)) & \to \C \setminus p(S)\\
+			z &\mapsto p(z)
+		\end{align*}
+		è un rivestimento liscio di grado $ d $.}
 	
-	Da qui la conclusione è puramente topologica: prendiamo $ \varphi_i\colon U_i \to W_i $ locali diffeomorfismi da intorni delle $ d $ radici di $ q $ ad altrettanti intorni di $ w $, intersechiamo questi intorni per ottenere un unico $ W = \bigcap_{i = 1}^d W_i $. Restringendo i diffeomorfismi di sopra otteniamo diffeomorfismi $ \varphi_i\colon \varphi_i^{-1}(W) \to W $, mostrando in particolare che $ W $ è un aperto banalizzante di $ w $; concludiamo per arbitrarietà del punto $ w $.
+	Osserviamo che $ dp_z= p'(z) $, dunque che $ p $ è un locale diffeomorfismo su tutti i punti in cui la derivata non si annulla, ossia su $ \C \setminus S $. La controimmagine di punto $ w \in \C \setminus p(S) $ conta esattamente $ d $ punti: infatti questi sono gli zeri di $ q(z) = p(z)-w $, che non può avere radici doppie perché la sua derivata $ q' = p' $ si annulla solo in $ p^{-1}(p(S)) $ e che deve avere $ d $ radici per il teorema fondamentale dell'algebra. \\
+	
+	Da qui la conclusione è puramente topologica: prendiamo $ \varphi_i\colon U_i \to W_i $ locali diffeomorfismi tra degli intorni delle $ d $ radici di $ q $ ad altrettanti intorni di $ w $ e intersechiamo questi ultimi per ottenere un unico aperto banalizzante $ W = \bigcap_{i = 1}^d W_i $. Restringendo i diffeomorfismi di sopra otteniamo infatti dei diffeomorfismi tra $ W $ e i suoi $ d $ fogli $$  \varphi_i\colon \varphi_i^{-1}(W) \to W,  $$ i quali ci dicono che $ W $ è effettivamente un aperto banalizzante per $ w $; concludiamo per arbitrarietà del punto $ w $.
 \end{ex}
 
-\begin{ex}[2.1]
-	Sia $ f\colon M to N $ la mappa in questione. Un embedding è un'immersione iniettiva che è un omeomorfismo sull'immagina: restringendo il codominio all'immagine $ im f $ possiamo supporre $ f $ bigettiva, dunque dobbiamo solo mostrare che $ f^{-1} $ è continua. Essendo $ f(M) \subseteq N $ compattamente generato, i suoi compatti formano un ricoprimento fondamentale: è sufficiente mostrare che $ f^{-1} $ è continua ristretta ogni compatto $ K $ di $ N $; d'altra parte la sua inversa $ f\colon f^{-1}(K) \to K $ è una funzione continua da un compatto a un Hausdorff e, pertanto, chiusa.
+\begin{ex}[2.1]{Mostra che una immersione iniettiva propria è un embedding.}
+	
+	Sia $ f\colon M \to N $ la mappa in questione. Un embedding è un'immersione iniettiva che è un omeomorfismo sull'immagine: restringendo il codominio all'immagine $ im f $ possiamo supporre $ f $ bigettiva, dunque dobbiamo mostrare solo che $ f^{-1} $ è continua. Essendo $ f(M) \subseteq N $ compattamente generato, i suoi compatti formano un ricoprimento fondamentale: è sufficiente mostrare che $ f^{-1} $ è continua ristretta ad ogni compatto $ K $ di $ N $; d'altra parte la sua inversa $ f\colon f^{-1}(K) \to K $ è una funzione continua da un compatto (perché $ f $ propria!) a un Hausdorff e, pertanto, chiusa.
 \end{ex}
 
-\begin{ex}[2.3]
-	Un sottoinsieme $ M \subseteq N $ di una varietà liscia è una sottovarietà se e solo se l'immersione $ i_M\colon M \hookrightarrow N $ è un embedding: un'implicazione è l'esercizio precedente e il viceversa è una proposizione enunciata in classe. La tesi segue osservando che la composizione di embedding rimane tale.
+\begin{ex}[2.3]{Sia $ M \subset N $ una sottovarietà liscia e $ S \subset M $ una sottovarietà
+		liscia. Mostra che $ S \subset N $ è una sottovarietà liscia.}
+	
+	Un sottoinsieme $ M \subseteq N $ di una varietà liscia è una sottovarietà se e solo se l'immersione $ i_M\colon M \hookrightarrow N $ è un embedding: un'implicazione è l'esercizio precedente e il viceversa è una proposizione enunciata in classe. La tesi segue osservando che la composizione di embedding rimane tale: la composizione di funzioni iniettive è iniettiva, il differenziale è iniettivo per la chain rule e l'immagine della composizione è un omeomorfismo sull'immagine perché composizione di omeomorfismi rimane tale.
 \end{ex}
 
-\begin{ex}[2.4]
-	Poiché essere aperta è una proprietà locale è sufficiente verificarlo in carta, dove le sommersioni sono funzioni lisce con differenziale full-rank, pertanto aperte per il teorema della mappa aperta. Un'eventuale sommersione $ f \colon M \to \R^k $ avrebbe immagine $ f(M) $ sia aperta (per quanto appena mostrato) che compatta (perché continua), ovvero vuota.
+\begin{ex}[2.4]{Mostra che una sommersione è sempre una mappa aperta.
+		Deduci che se $ M  $ è compatta allora non esistono sommersioni $ M \to \R^k $ per
+		nessun $k$.}
+	
+	Poiché essere aperta è una proprietà locale è sufficiente verificarlo in carta, dove le sommersioni sono funzioni lisce con differenziale full-rank e pertanto aperte per il Teorema della Mappa Aperta. Un'eventuale sommersione $ f \colon M \to \R^k $ avrebbe immagine $ f(M) $ sia aperta (per quanto appena mostrato) che compatta (perché continua), ovvero vuota (che è, ovviamente, assurdo)!
 \end{ex}
 
 \end{document}

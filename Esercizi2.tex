@@ -1,0 +1,170 @@
+\documentclass[a4paper]{article}
+
+\makeatletter
+\title{Istituzioni di Geometria}\let\Title\@title
+\author{Andrea Gallese}\let\Author\@author
+\date{\today}\let\Date\@date
+
+\usepackage{Gallo}
+
+\renewcommand{\P}{\mathbb{P}}
+
+\begin{document}
+	\Intitola
+	
+\begin{ex}[3.6]{Mostra che il fibrato tangente $ T K $ della bottiglia di Klein $ K $ ha una sezione mai nulla ma non ha un frame.}
+	
+	Otteniamo la bottiglia di Klein quozientando il suo rivestimento universale $ \R^2 $ per l'azione del gruppo di diffeomorfismi $ G = \langle (x+1, \, -y), \, (x, \, y+1) \rangle $. Il campo vettoriale costante $ (1,\, 0) $ è invariante per l'azione di $ G $ e passa pertanto al quoziente, fornendo la sezione mai nulla del tangente desiderata.\\
+	
+	Tuttavia, un frame non può esistere, perché questo indurrebbe un'orientazione sulla bottiglia, che abbiamo visto in classe non essere orientabile: sarebbe infatti sufficiente scegliere su ogni tangente $ T_pK $ l'orientazione del frame, perché questo garantisce la locale coerenza delle orientazioni. 
+\end{ex}
+
+\begin{ex}[3.7]{Mostra che il fibrato tangente $ TM $ di una varietà $ M $ è sempre orientabile, anche se $ M $ non lo è.}
+	
+	Osserviamo innanzitutto che il tangente in un punto del tangente $ (p, \, v) \in TM $ sarà della forma $ T_pM \oplus T_v(T_pM) $. Il secondo addendo è il tangente ad un vettore in uno spazio vettoriale e pertanto canonicamente identificato con lo spazio stesso: possiamo quindi scrivere
+	$$ T_{(p, \, v)}(TM) = T_pM\oplus T_pM. $$
+	
+	Le carte del tangente sono, per costruzione, il pullback delle carte di $ M $ tramite la proiezione $ \pi\colon TM \to M $: ad ogni carta $ \varphi\colon U \to V $ in $ M $, corrisponde una carta di $ TM $ della forma
+	\begin{align*}
+		\varphi^*\colon \pi^{-1}(U) &\to V \times \R^n \\
+		(p, \, v)& \mapsto (\varphi(p), \, d\varphi_p(v))	
+	\end{align*}
+	Il corrispondente differenziale sarà un isomorfismo $ d\varphi^*_{(p, v)} $ che agisce allo stesso modo sulle due componenti del tangente
+	\[  d\varphi_p \oplus d\varphi_p \colon T_pM \oplus T_pM \to \R^n \oplus \R^n. \]
+	
+	L'orientazione di una somma diretta è indotta da quella degli addendi: giustapponendo due basi positive, otterremo una base positiva. Scelta comunque un'orientazione su ogni $ T_pM $, questa induce una scelta di orientazioni coerente sul tangente! Infatti che $ d\varphi_p $ preservi o meno l'orientazione, comunque $ d\varphi^*_{(p, v)} = d\varphi_p \oplus d\varphi_p $ la preserva: una base positiva di $ T_p(M) $ viene mandata nella giustapposizione di due basi positive oppure di due basi negative, in entrambi i casi una base positiva della somma diretta.
+	
+
+\end{ex}
+
+\begin{ex}[3.9]{Costruisci un fibrato $ E \to K $ con fibra $ F = S^1 $
+		sopra la bottiglia
+		di Klein $ M $, tale che $ E $ sia una 3-varietà compatta orientabile (consiglio: puoi
+		usare un esercizio della prima settimana).}
+	
+	Sia $ E $ la 3-varietà costruita nell'esercizio 1.8. Osserviamo che la proiezione $ \pi\colon \R^3 \to \R^2 $ sul piano $ y=0 $ è compatibile con l'azione del gruppo $ \Gamma $ su $ \R^3 $, nel senso che agire sull'intero spazio e poi proiettare sul piano è equivalente a restringere l'azione del gruppo al piano. Ovviamente, sul piano il gruppo è generato da solo $ \tilde{f}(x, z) = (x+1, z) $ e $ \tilde{h}(x, z) = (-x, z+1) $ e il quoziente è quindi una bottiglia di Klein. Otteniamo pertanto, passando al quoziente, una mappa suriettiva
+	\[ p\colon E \to K. \]
+	Per capire com'è fatta la fibra sopra un punto $ m \in K $, restringiamoci a considerare cosa succede sopra un quadrato fondamentale di $ \R^2 $: sul quadrato ci sarà esattamente un punto corrispondente ad $ m $, la cui contrimmagine tramite la proiezione ortogonale è la retta in $ \R^3 $ ortogonale al piano in quel punto ($ x = m_x, z = m_z $)! Su questa retta il gruppo $ \Gamma $ agisce per traslazione in modo discreto (tramite $ \tilde{g}(y) = (y+1) $), ne segue che la fibra sarà diffeomorfa a $ \S^1 $, come volevamo. Capito questo, la conclusione è immediata: prendendo un intorno $ U $ del punto (che possiamo assumere contenuto nel quadrato fondamentale), questo si solleverà al cilindro sovrastante, su cui $ \Gamma $ agisce per traslazione come prima! Il quoziente sarà pertanto diffeomorfo a $ U \times \S^1 $.
+	
+	\begin{center}
+		\includegraphics[scale=0.5]{disegnino}
+	\end{center}
+\end{ex}
+
+\begin{ex}[4.2]{Data una matrice quadrata $ A $, sia $ X_A $ il campo vettoriale su $ \R^n $ dato da $ X_A(x) = Ax $. Mostra che
+		\[[X_A, X_B] = X_{BA-AB}.\]}
+	I campi vettoriali in questione hanno per coordinate le colonne della rispettiva matrice
+	\[ X_A = A^i \frac{\partial }{\partial x_i}, \]
+	dunque possiamo scrivere esplicitamente le coordinate della parentesi di Lie
+	\[ [X_A, X_B]
+	= A^i \frac{\partial B^j }{\partial x_i} - B^i \frac{\partial A^j }{\partial x_i}
+	= A^i B^{ij} \frac{\partial }{\partial x_i} - B^i A^{ij} \frac{\partial }{\partial x_i}
+	= {\left(A^iB^{ij}-B^iA^{ij}\right)} \frac{\partial }{\partial x_i},  \]
+	che è proprio la colonna $ i $-esima di $ BA-AB $!
+\end{ex}
+
+\begin{ex}[4.3]{Dimostra la identità di Jacobi: dati tre campi vettoriali $ X $, $ Y $, $ Z $ su una varietà $ M $, vale
+\[[[X, Y ], Z] + [[Y, Z], X] + [[Z, X], Y ] \equiv 0.\]}
+	Su ogni $ f \in C^\infty(M) $ il primo addendo del campo nella tesi agisce, per definizione (prima della parentesi esterna, poi di quella rimanente), come
+	\begin{align*}
+		[[X, Y ], Z](f) & = [X, Y]Z(f) - Z[X, Y](f) \\
+		& = XYZ(f) - YXZ(f) - ZXY(f) + ZYX(f).
+	\end{align*}
+	Per ottenere gli altri addendi è sufficiente variare in modo ciclico i campo $ X, \, Y, \, Z $:
+	\begin{align*}
+	[[X, Y ], Z](f) & = XYZ(f) - YXZ(f) - ZXY(f) + ZYX(f), \\
+	[[Z, X ], Y](f) & = ZXY(f) - XZY(f) - YZX(f) + YXZ(f), \\
+	[[Y, Z ], X](f) & = YZX(f) - ZYX(f) - XYZ(f) + XZY(f).
+	\end{align*}
+	Rimane solo da osservare che ogni permutazione dei tre campi compare esattamente due volte, con segni discordi: segue che il campo risultante agisce su tutte le funzioni come il campo nullo e, pertanto, vi coincide.
+\end{ex}
+
+\begin{ex}[4.6]{Mostra che gli unici sottogruppi di Lie connessi di $ SO(3) $ sono l’identità, $ SO(3) $, e i sottogruppi isomorfi a $ \mathbb{S}^1 $ che descrivono le rotazioni intorno ad un asse.}
+	
+	Poiché i sottogruppi di Lie connessi di $ SO(3) $ sono in corrispondenza biunivoca con le sottoalgebre di Lie di $ \mathfrak{so}(3) = A(3) $ (l'algebra delle matrici antisimmetriche), è sufficiente classificare queste ultime. Dobbiamo quindi mostrare che le uniche sottoalgebre non banali sono quelle di dimensione 1 e che a queste corrispondono sottogruppi connessi isomorfi a $ \S^1 $.\\
+	
+	Tutti i sottospazi di dimensione 1 sono chiaramente sottoalgebre, infatti sono chiuse per le parentesi di Lie perché questa è bilineare: prese comunque $ \alpha X $ e $ \beta X $ nel sottospazio Span$ (X) $, abbiamo $$  [\alpha X, \beta X] = \alpha\beta[X, X] = 0 \in \text{Span}(X).  $$
+	
+	Viceversa, nessuno sottospazio di dimensione 2 è chiuso per le parentesi di Lie: è sufficiente osservare che 
+	\begin{align*}
+		\left(\begin{matrix}
+		0 & -a & b \\
+		a & 0 & -c \\
+		-b & c & 0 
+		\end{matrix}\right) \mapsto \left(\begin{matrix}
+		a \\ b \\ c
+		\end{matrix}\right)
+	\end{align*}
+	è un isomorfismo tra l'algebra di Lie delle matrici antisimmetriche $ \mathcal{A}(3) $ e $ \R^3 $ dotato del prodotto vettoriale. Quest'ultima algebra non ha sottoalgebre di dimensione 2, perché il prodotto vettoriale di due vettori linearmente indipendenti non appartiene al sottospazio generato da questi: $$  v \times w \notin \text{Span}(v, \, w).  $$
+	
+	Rimane da mostrare che alle sottoalgebre di dimensione 1 sono associati sottogruppi isomorfi a $ \mathbb{S}^1 $. A ogni matrice $ M \in \mathcal{A}(3) $ è associato il sottogruppo degli elementi della forma $ e^{tM} $ al variare di $ t \in \R $; ci aspettiamo che questo sia il gruppo di rotazioni attorno ad un asse fissato. Possiamo quindi affrontare il problema nella direzione opposta: tutti i sottogruppi di rotazione attorno ad un asse sono sottogruppi di Lie isomorfi ad $ \S^1 $ e, poiché ne troviamo uno per ogni direzione sul tangente (associando ad una matrice antisimmetrica il suo esponenziale), questi saranno tutti i sottogruppi di dimensione 1.
+\end{ex}
+
+\begin{ex}[5.2]{Mostra che due embedding $ f, g \colon \R \to \R^2 $ sono sempre isotopi.}
+	
+	Consideriamo degli intorni tubolari $ i_f, i_g\colon \R^2 \hookrightarrow \R^2 $ di, rispettivamente, $ f(\R) $ e $ g(\R) $. Questi sono due embedding di $ \R^2 $ in una varietà connessa e sono pertanto isotopi (a meno di precomporre $ i_g $ con una riflessione a scelta); ovvero esiste $$  F_t\colon \R^2 \times \R \to \R^2  $$ per cui $ F_0 = i_f $ e $ F_1 = i_g $ (oppure $ i_g \circ \rho $).
+	
+	Restringendo questa isotopia alla prima coordinata, otteniamo l'isotopia voluta: \[ \tilde{F_t}\colon \R_x \to \R^2 \]
+	tale che $ \tilde{F_0} = f $ e $ \tilde{F_1} = g $ (scegliendo, nel caso, $ \rho $ la riflessione rispetto all'asse $ x $). 
+	
+\end{ex}
+
+%\texttt{\begin{ex}[5.3]{Sia $ E \to M $ un fibrato. Mostra che una sottovarietà $ S \subset E $ è immagine di una sezione $ \Leftrightarrow $ interseca trasversalmente ogni fibra in un punto.}
+%	
+%	L'osservazione fondamentale è che, detta $ \pi\colon E \to M $ la proiezione del fibrato, il differenziale in ogni punto $ d\pi_p\colon T_pE \to T_{\pi(p)}M $ è una mappa lineare suriettiva di nucleo è $ \ker d\pi_p = T_pE_p $. Infatti, per definizione di fibrato, abbiamo un intorno $ U $ di $ \pi(p) $ per cui
+%	\[ \begin{tikzcd}
+%	\pi^{-1}(U) \dar["\pi"] \rar["\sim" above, "\varphi" below] & U \times F \arrow[dl, "\pi_U" ] \\
+%	U
+%	\end{tikzcd}, \]
+%	che a livello di differenziali ci dice che $ d\pi_p =  d \pi_{\varphi(p)}\circ d\varphi_p $: visto che il primo è un isomorfismo, il nucleo sarà proprio il tangente della fibra.\\
+%	
+%	Ora la dimostrazione è una passeggiata.
+%	Supponiamo di avere una sottovarietà
+%	\[ \begin{tikzcd}
+%	S \rar ["i", hook] \arrow[dr, "\psi" below, dashed]  & E \dar["\pi" right] \\
+%	& M
+%	\end{tikzcd} \]
+%	che interseca trasversalmente ogni fibra in esattamente un punto. La composizione $ \psi = \pi \circ i $ è dunque bigettiva e un locale diffeomorfismo: infatti \[ d\psi_p = d\pi_{i(p)}\circ di_p \] e per ipotesi $ di_p(T_pS) + d_{i(p)}T_{i(p)}E_p $.
+%	
+%	
+%	Supponiamo di avere una sezione
+%	\[ \begin{tikzcd}
+%	E \dar["\pi" left] \\
+%	M \uar["s" right, bend right = 50, dashed]
+%	\end{tikzcd} \]
+%	e mostriamo che otteniamo una sottovarietà trasversa a ogni fibra in esattamente un punto.
+%\end{ex}}
+
+\begin{ex}[5.5]{Sia $ f \colon \S^1 \to \R^3 $ un nodo (cioè un embedding liscio). Mostra che esiste un piano affine $ P \subseteq \R^3 $ tale che $ \pi \circ f \colon \S^1 \to P $ sia un’immersione, dove $ \pi $ è la proiezione ortogonale su $ P $.}
+	
+	Indichiamo con $ \pi_v $ la proiezione sul piano normale al vettore $ v \in \R^3 $. Identificando tutti i tangenti di $ \R^3 $ con $ \R^3 $ il differenziale della proiezione è $ d\pi_v = \pi_v $. Dunque $ \pi_v f $ è un'immersione in $ p \in \S^1 $ se e solo se $$ 0 \neq d(\pi_v f)_p = \pi_v (df_p), $$
+	ovvero se e solo se $ v $ e $ df_p(1) $ sono paralleli. Per trovare un'immersione è quindi sufficiente trovare una direzione $ v $ diversa da quella di ciascun tangente di $ f(\S^1) $ (pensato come sottospazio di $ \R^3 $) e proiettare lungo quella; ci basta quindi mostrare che esiste una direzione con questa proprietà. Questo è equivalente, una volta appurato che la retrazione di $ \R^3\setminus{0} $ su $ \S^2 $ è liscia, a mostrare che non ci sono mappe lisce suriettive $ \S^1 \to \S^2 $: esplicitamente, la mappa che associa ad ogni punto di $ \S^1 $ la direzione $ f'/ ||f|| $ è liscia. Ogni mappa $ \S^1 \to \S^2 $ deve però avere immagine nulla per il lemma di Sard: ogni punto di $ \S^1 $ è infatti valore critico, perché finisce in una varietà di dimensione maggiore.
+	
+\end{ex}
+
+\begin{ex}[5.6]{Siano $ M $ e $ N $ due varietà connesse orientate senza bordo di dimensione $ n \geq 3 $. Mostra che
+		$$  \pi_1(M \# N) \simeq \pi_1(M) \ast \pi_1(N)  $$
+		dove $ \ast $ indica il prodotto libero di gruppi (cerca la definizione in rete se non la conosci).}
+	
+	Siano $ f\colon \R^n \hookrightarrow M $, $ g\colon \R^n \hookrightarrow N $ gli embedding per i quali è avvenuto l'incollamento. Applicando il Teorema di Van Kampen al ricoprimento costituito dai due aperti $ U = M \setminus f(B) $ e $ V = N\setminus g(B) $ di $ M \# N $ scopriamo che il gruppo fondamentale a cui siamo interessati è il pushout
+	\[ \begin{tikzcd}
+	\pi_1(U \cap V) \rar\dar\arrow[dr, phantom, "\ulcorner", very near end] & \pi_1(U) \dar \\
+	\pi_1(V) \rar & \pi_1(M \# N).
+	\end{tikzcd} \]
+	Osserviamo che $ U \cap V $ è, per definizione di somma connessa, $ f(\R^n \setminus B) = g(\R^n \setminus B) $, quindi omeomorfo a $ \R^n \setminus B $, pertanto semplicemente connesso (visto che $ n \geq 3 $). Fondamentalmente per la stessa ragione $ U $ e $ M $ avranno lo stesso gruppo fondamentale, così come $ V $ e $ N $: è come togliere a $ \R^n $ la palla unitaria; applicando diligentemente il Teorema di Van Kampen al ricoprimento di $ M $ costituito dai due aperti $ M \setminus f(\frac{1}{2}\bar{B}) $ (che si retrae per deformazione su $ U $, che sfortunatamente non è aperto in $ M $) e $ f(B) $ otteniamo il seguente diagramma di pushout
+	\[ \begin{tikzcd}
+	\pi_1((M \setminus f(\frac{1}{2}\bar{B})) \cap f(B)) \rar\dar\arrow[dr, phantom, "\ulcorner", very near end] & \pi_1(M \setminus f(\frac{1}{2}\bar{B})) \dar \\
+	\pi_1(f(B)) \rar & \pi_1(M).
+	\end{tikzcd} \]
+	I gruppi di sinistra sono entrambi banali, quello sotto evidentemente, quello sopra perché l'intersezione si retrae per deformazione su $ f(\S^{n-1}) $, che sappiamo essere semplicemente connesso per $ n\geq 3 $. Segue che la mappa di destra è un isomorfismo
+	\[ \pi_1(U) \simeq \pi_1(M \setminus f(\frac{1}{2}\bar{B})) \to \pi_1(M). \]
+	Possiamo dunque riscrivere il primo diagramma come
+	\[ \begin{tikzcd}
+	1 \rar\dar\arrow[dr, phantom, "\ulcorner", very near end] & \pi_1(M) \dar \\
+	\pi_1(N) \rar & \pi_1(M \# N),
+	\end{tikzcd} \]
+	che è precisamente la tesi (perché il coprodotto in \textbf{Grp} è il prodotto libero).
+	
+\end{ex}
+
+\end{document}
