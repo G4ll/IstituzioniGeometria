@@ -1,0 +1,168 @@
+\documentclass[a4paper]{article}
+
+\makeatletter
+\title{Istituzioni di Geometria}\let\Title\@title
+\author{Andrea Gallese}\let\Author\@author
+\date{\today}\let\Date\@date
+
+\usepackage{Gallo}
+
+\makeatletter
+\DeclareRobustCommand{\sqcdot}{\mathbin{\mathpalette\morphic@sqcdot\relax}}
+\newcommand{\morphic@sqcdot}[2]{%
+	\sbox\z@{$\m@th#1\centerdot$}%
+	\ht\z@=.33333\ht\z@
+	\vcenter{\box\z@}%
+}
+\makeatother
+
+\renewcommand{\P}{\mathbb{P}}
+
+\begin{document}
+	\Intitola
+	
+\begin{ex}[9.1]{Considera il piano iperbolico nel modello del semipiano: \[ H^2= \{ (x, y) \in \R^2 \mid y > 0 \}, \qquad g = \frac{1}{y^2}\, g^E. \]
+	Calcola l’area del dominio
+	\[[-a, a] \times [b, \infty)\]
+	per ogni $ a, b > 0 $. L’area è ovviamente quella indotta dalla forma volume della varietà riemanniana $ H^2 $.}
+	
+	La forma volume indotta dalla metrica iperbolica è 
+	\[ \sqrt{\det[g(x, y)]} \, dx \wedge dy = \frac{1}{y^2}\, dx \wedge dy. \]
+	L'area del dominio che ci interessa è dunque
+	\[ \int_{[-a, a] \times [b, \infty)} \frac{1}{y^2}\, dx \wedge dy = \int_{-a}^a dx \int_b^\infty \frac{1}{y^2}\,dy = \frac{2a}{b}. \]
+\end{ex}
+
+\begin{ex}[9.3]{Calcola i simboli di Christoffel nel piano iperbolico con il modello del semipiano $ \mathcal{H}^2 $. Sia $ v_0 = (0, 1) $ punto tangente nel punto $ (0, 1) \in \mathbb{H}^2 $. Sia $ v_t $ il trasporto parallelo di $ v_0 $ lungo la curva $ \gamma(t) = (t, 1) $. Calcola l’angolo fra $ v_t $ e l’asse delle ordinate (il risultato dipende da $ t $).}
+	
+	Per calcolare i simboli di Christoffel della connessione di Levi-Civita abbiamo una formula esplicita:
+	\[ \Gamma_{ij}^l = \frac{1}{2}g^{kl} \left(  \frac{\partial g_{jk}}{\partial x_i} + \frac{\partial g_{ki}}{\partial x_j} - \frac{\partial g_{ij}}{\partial x_k} \right).  \]
+	Sostituendovi $ g_{ij} = \frac{1}{y^2}\,\delta_{ij} $ e $ g^{ij} = y^2 \delta^{ij} $, troviamo che
+	\[ \Gamma_{12}^1 = \Gamma_{21}^1 = \Gamma_{22}^2 = -\frac{1}{y}, \qquad \Gamma_{11}^2 = \frac{1}{y} \]
+	e che tutti gli altri simboli sono nulli. Questo ci permette di scrivere il problema di Cauchy che determina il trasporto parallelo $ v_t $: visto che $ \dot{\gamma}(t) = (1, 0) $ rimangono solo i due termini con $ \Gamma_{1j}^k $, valutati in $ y = 1 $, ovvero rimane
+	\[ \frac{d\textbf{v}_t}{dt} - v_t^{(2)} \textbf{e}_1 + v_t^{(1)} \textbf{e}_2 = 0, \qquad v_0 = (0, 1), \]
+	la cui soluzione è $ v_t = (\sin t, \cos t) $. Dunque l'angolo tra $ v_t $ e l'asse delle ordinate è $ \frac{\pi}{2}+t $.
+\end{ex}
+	
+\begin{ex}[9.7]{Sia $ G $ un gruppo di Lie. Mostra che esiste sempre una metrica riemanniana su $ G $ invariante a sinistra, cioè tale che $ L_g \colon G \to G $ sia un’isometria per ogni $ g \in G $.}
+	
+	Scegliamo sul tangente nell'identità $ T_1G $ un prodotto scalare definito positivo $ s(1)(v, w) $. Ogni $ x \in G $ fornisce un'isomorfismo lineare tra i tangenti $ dL_x \colon T_1G \to T_xG $, che possiamo usare per definire il prodotto scalare ovunque
+	\[ s(x)(v, w) := s(1)(dL_x^{-1} v,dL_x^{-1} w ). \]
+	Poiché $ dL_x^{-1} = dL_{x^{-1}} $ è liscia in $ x $, questo definisce un prodotto scalare su tutto $ G $, che ora mostriamo essere invariante a sinistra: preso un diffeomorfismo $ L_g \colon G \to G $, abbiamo, per ogni $ x \in G, \, v, \, w \in T_xG $, che
+	\begin{align*}
+		s(gx)(dL_g v, dL_g w) &=
+		s(1)(dL_{gx}^{-1}dL_g v, dL_{gx}^{-1}dL_g w) \\
+		& = s(1)(dL_{x}^{-1}dL_{g}^{-1}dL_g v, dL_{x}^{-1}dL_{g}^{-1}dL_g w)\\
+		& = s(1)(dL_{x}^{-1} v, dL_{x}^{-1} w)\\
+		& = s(x)(v, w).
+	\end{align*}
+\end{ex}
+
+\begin{ex}[10.1]{ Considera la connessione $ \nabla $ su $ \R^3 $ con simboli di Christoffel
+		\[ \Gamma_{12}^3 = \Gamma_{23}^1 = \Gamma_{31}^2 = 1, \qquad \Gamma_{21}^3 = \Gamma_{32}^1 = \Gamma_{13}^2 = -1. \]
+		e tutti gli altri simboli di Christoffel nulli. Mostra che questa connessione è
+		compatibile con il tensore metrico euclideo $ g $, ma non è simmetrica. Quali sono le geodetiche?}
+	
+	Possiamo verificare la compatibilità di $ \nabla $ con $ g $ in carte, mostrando che
+	\[ \frac{\partial g_{ij}}{\partial x_k} = \Gamma_{ki}^lg_{lj} + \Gamma_{kj}^lg_{li}. \]
+	In questo caso, poiché il tensore metrico euclideo è costante nelle coordinate canoniche, il membro di sinistra è nullo. Quello di destra anche: abbiamo infatti che 
+	\[ \Gamma_{ki}^l\delta_{lj} + \Gamma_{kj}^l\delta_{li} =
+	\Gamma_{ki}^j + \Gamma_{kj}^i
+	\]
+	che è immediato verificare che hanno segno opposto o sono entrambi nulli. Che non sia simmetrico è immediato: per dire
+	\[ \Gamma_{12}^3 = 1 \neq -1 = \Gamma_{21}^3. \]
+	Il sistema differenziale delle geodetiche è dato dalle equazioni $ \ddot{x}_k +\dot{x}_i\dot{x}_j \Gamma_{ij}^k = 0 $; dunque il termine $ \dot{x}_i\dot{x}_j $ compare con coefficiente $ \Gamma_{ij}^k + \Gamma_{ji}^k $ che nel nostro caso è un attimo verificare essere sempre nullo. Segue che il sistema differenziale è costituito da equazioni molto semplici, per ogni $ k $ troviamo
+	\[ \ddot{x}_k = 0. \]
+	Le geodetiche sono quindi le rette.
+\end{ex}
+
+\begin{ex}[10.2]{Considera il modello del disco dello spazio iperbolico $ (B^n, g) $, \[ g(x) = \left(\frac{2}{1-||x||^2}\right)^2 g^E(x) \] dove $ g^E $ è il tensore metrico euclideo. Sia $ v \in S^{n-1}$. Mostra che la geodetica massimale passante per l’origine in direzione $ v $ è \[ \gamma(t) = \tanh t \cdot v = \frac{e^{2t}-1}{e^{2t}+1} \cdot v \]}
+	
+	Osserviamo che la geodetica uscente dall'origine in direzione $ v $ è radiale per ragioni di simmetria: intuitivamente, la geodetica non può uscire dalla retta individuata da $ v $ perché tutte le direzioni sono ugualmente valide. Formalmente, tutte le isometrie del disco che fissano l'origine e $ v $ devono mandare la geodetica $ \gamma $ in sè stessa; in $ SO(n) $ troviamo isometrie del disco che fissano $ v $ e spostano un vettore a lui linearmente indipendente a nostra scelta, dunque $ \gamma $ ha supporto in questa retta. Per convincerci che $ \gamma(t) $ è una geodetica, non ci resta che mostrare che percorre la retta a velocità costante! Questo è un semplice conto:
+	\begin{align*}
+		g(\gamma(t))(\dot{\gamma}(t), \dot{\gamma}(t)) &= \left(\frac{2}{1-||\gamma(t)||^2}\right)^2 \, ||\dot{\gamma}(t)||^2 \\
+		&=\left(\frac{2}{1-\tanh^2 t}\right)^2 \, \left(\frac{1}{\cosh^2 t}\right)^2 \\
+		& = \left(\frac{2}{\cosh^2t -\sinh^2t}\right)^2 \\
+		& = 4,
+	\end{align*}
+	indipendentemente da $ t, $ come volevamo.
+\end{ex}
+
+\begin{ex}[10.4]{Sia $ M $ una varietà pseudo-Riemanniana connessa. Sia $ p \in M $ un punto. Il gruppo di olonomia di $ M $ in $ p $ è il sottoinsieme
+\[ H_p = \{ \Gamma(\gamma)_{t_0}^{t_1} \} \subset O(T_pM, g(p)) \]
+ottenuto al variare di tutte le curve $ \gamma \colon I \to M $ con $ t_0 < t_1 $ contenuti in $ I $ e
+tali che $ \gamma(t_0) = \gamma(t_1) = p $. Mostra che $ H_p $ è effettivamente un sottogruppo.
+Mostra che se $ p, q \in M $ allora $ H_p $ e $ H_q $ sono isomorfi. Determina il tipo di isomorfismo di $ H_p $ per $ M = \R^n $ e $ M = \S^2 $.}
+	
+	Possiamo assumere senza perdita di generalità, per l'esercizio 10.3, che tutte le curve che consideriamo siano costanti per un tratto iniziale e finale (così da poterle incollare senza problemi di regolarità). È chiaro che prese due curve $ \gamma $ e $ \eta $ con estremi in $ p $, percorrendo prima l'una e poi l'altra otteniamo
+	\[ \Gamma(\gamma \sqcdot \eta) = \Gamma(\eta) \; \Gamma(\gamma).  \]
+	Da questo segue che $ H_p $ è chiuso per moltiplicazione. Inoltre percorrendo $ \gamma $ alla rovescia otteniamo l'inverso di $ \Gamma(\gamma) $: questo perché se il trasporto parallelo $ X(t) $ lungo $ \gamma(t) $ in $ (t_0, t_1) $ risolve il sistema di Cauchy
+	\[\frac{\partial X}{\partial t } + \dot{\gamma}(t)^iX^j(t)\Gamma_{ij}^k\textbf{e}_k = 0, \qquad X(t_1) = \Gamma(\gamma) \, v \]
+	allora il trasporto parallelo $ X(t_1-t) $ risolve il problema di Cauchy che definisce il trasporto parallelo lungo $ \gamma(t_1-t) $
+	\[ \frac{\partial X(t_1-t)}{\partial t } -\dot{\gamma}(t_1-t)^iX^j(t_1-t)\Gamma_{ij}^k\textbf{e}_k = 0, \qquad X(t_1) = \Gamma(\gamma) \, v. \]
+	Questo mostra che $ H_p $ è un sottogruppo.\\
+	
+	Presi due punti qualunque $ p, \, q \in M $, scegliamo una curva $ \eta $ che colleghi $ p $ con $ q $ (che esiste perché la varietà e connessa). L'omomorfismo
+	\begin{align*}
+		\eta^* \colon H_q &\to H_p\\
+		\Gamma(\gamma) & \mapsto \Gamma(\eta)\,\Gamma(\gamma)\,\Gamma(\eta)^{-1}
+	\end{align*}
+	ha un'ovvio inverso dato da $ \eta^{-1} $. Tutte le verifiche del caso sono semplici ma poco interessanti, quindi le tralasciamo. \\
+	
+	La connessione di Levi-Civita su $ \R^n $ con la metrica euclidea ha simboli di Christoffel tutti nulli, il campo parallelo a un qualunque vettore lungo una curva $ \gamma $ risolve pertanto l'equazione differenziale 
+	\[ \frac{\partial X}{\partial t} = 0. \]
+	Ne deduciamo che sono tutti campi costanti e quindi che il gruppo di olonomia è banale.\\
+	
+	Il gruppo di olonomia si $ \S^2 $ è invece $ SO(2) $. Sia $ N $ il polo nord e $ v, w $ una base ortonormale di $ T_N\S^2 $. Otteniamo la rotazione di angolo $ \theta $ percorrendo la geodetica in direzione $ v $ fino all'equatore, percorrendo un angolo $ \theta $ sull'equatore (dunque lungo la geodetica perpendicolare alla precedente, così che $ v $ rimanga radiale rispetto ad $ N $) e tornando poi al polo nord tramite una geodetica (quella lungo $ -v $). Sia $ \gamma $ una curva su $ \S^2 $, per il Lemma di Saard questa non può essere suriettiva, possiamo quindi pensarla come una curva in $ \S^2 $ meno un punto; questa varietà, al contrario della sfera, è orientabile. Qui ha senso osservare che gli isomorfismi indotti dal trasporto parallelo preservano l'orientazione: è infatti sufficiente prendere una base di $ T_N\S^2 $ e valutare la 2-forma mai nulla che definisce l'orientazione (esercizio 6.1) nell'immagine di questa base lungo la curva; poiché la composizione del trasporto parallelo con la 2-forma definisce una mappa continua mai nulla, questa ha sempre lo stesso segno, dunque l'orientazione è preservata. Dobbiamo concludere che il gruppo di olonomia è formato esattamente dalle rotazioni.
+\end{ex}
+
+\begin{ex}[11.1]{Una varietà riemanniana connessa è omogenea se per ogni $ p,\, q \in M $ esiste una isometria di $ M $ che porti $ p $ in $ q $. Mostra che una varietà riemanniana omogenea è sempre completa.}
+	
+	Fissiamo un punto $ p \in M $. Poiché ci troviamo su una varietà riemanniana, sappiamo che esiste un palla geodetica che è un intorno normale di $ p $: possiamo infatti prendere un intorno normale e scegliere una palla centrata in $ p $ contenuta in questo. Sia $ r $ il raggio di questa palla.
+	
+	Mostriamo ora che ogni geodetica $ \gamma_v $ che esce da $ p $ è definita su tutto $ \R $. Senza perdita di generalità, possiamo supporre che $ v $ sia unitario. Per quanto appena osservato, la geodetica esiste sicuramente per $ t \in (-r, r) $. Inoltre per ogni tempo $ t \in \R $ in cui esiste, abbiamo per omogeneità  un'isometria che manda $ p \mapsto \gamma_v(t) $ e un certo vettore unitario $ w \in T_pM $ in $ \dot{\gamma}_v(t) $; questa isometria manda pertanto la geodetica $ \gamma_w(s) $, uscente da $ p $ in direzione $ w $, nella geodetica uscente da $ \gamma_v(t) $ in direzione $ \dot{\gamma}_v(t) $, che è proprio la geodetica $ \gamma_v(t+s) $. Ne segue che ad ogni $ t $ la geodetica prosegue almeno fino a $ t+r $ e dunque che l'intervallo di definizione è illimitato a destra; analoghe considerazioni valgono nell'altra direzione, dunque la geodetica $ \gamma_v $ dev'essere definita su tutto $ \R $. Dall'arbitrarietà di $ p $ e $ v $ segue la tesi.
+	
+	% forse mostriamo che le isometrie mandano geodetiche in geodetiche?
+\end{ex}
+
+\begin{ex}[11.2]{Sia $ f \colon M \to N $ una isometria locale fra varietà riemanniane connesse. Mostra che se $ M $ è completa, allora $ f $ è un rivestimento.}
+	
+	Cominciamo osservando che un'isometria locale manda geodetiche in geodetiche, questo perché, per una curva $ \gamma(t) \in M $, la geodesicità è una proprietà locale.
+	% forse mostriamo che le isometrie locali mandano geodetiche in geodetiche?
+	Avremo dunque, presi dei qualunque $ q \in M $ e $ v \in T_qM $ e $ \gamma_v $ la geodetica uscente da $ q $ in direzione $ v $, che \[ f(\gamma_v(t)) = \gamma_{df_qv}(t), \]
+	fintanto che la geodetica in $ N $ esiste.\\
+	
+	Mostriamo ora che, preso $ p \in N $, una sua palla geodetica $ B(p, r) $ è banalizzante, facendo vedere che, scelto un sollevamento $ q \in f^{-1}(p) $ di $ p $, $ f $ è bigettiva se ristretta alla palla geodetica $ B(q, r) $. Scegliamo dunque un punto $ x \in B(p, r) $ e mostriamo che troviamo esattamente una sua controimmagine in $ B(q, r) $:
+	\begin{itemize}
+		\item[$ \exists. $] Poiché $ B(p, r) $ è normale, possiamo pensare a $ x $ come a un punto su una qualche geodetica uscente da $ p $ in una certa direzione $ v $ \[ x = \gamma_v(t_0). \]
+		Solleviamo $ \gamma_v $ alla geodetica corrispondente $ \gamma_{df_q^{-1}v} $ in $ M $, ovvero quella uscente da $ q $ in direzione $ df_q^{-1}v $. Questa esiste per ogni tempo per completezza di $ M $. Per quanto osservato all'inizio abbiamo che
+		\[ f(\gamma_{df_q^{-1}v}(t_0)) = \gamma_{v}(t_0) = x, \]
+		ovvero un punto nella controimmagine $ f^{-1}(x) $.
+		
+		\item[$!.$] Supponiamo di trovare due punti $ y_1, y_2 \in B(q, r) $ la cui immagine è $ x. $ Questi, per completezza di $ M $, sono collegati a $ q $ con una geodetica ciascuno (volendo, di lunghezza minima e quindi interamente contenuta in $ B(q, r) $), che possiamo pensare come alle geodetiche uscenti da $ q $ in direzione, rispettivamente, $ v_1 $ e $ v_2 $. Abbiamo dunque che
+		\[ \gamma_{df_qv_1}(t_1) = f(\gamma_{v_1}(t_1)) = f(y_1) =  x = f(y_2) = f(\gamma_{v_2}(t_2)) = \gamma_{df_qv_2}(t_2) \]
+		o, analogamente, che $ \exp_p(t_1 df_qv_1) = \exp_p(t_2 df_qv_2); $ avendo assunto però che $ \exp_p $ fosse un diffeomorfismo su $ B(p, r) $, scopriamo che $ y_1 $ e $ y_2 $ dovevano coincidere in partenza.
+	\end{itemize}
+	Dunque ogni restrizione $ f\colon B(q, r) \to B(p, r)$ è un'isometria locale bigettiva, ovvero un'isometria e, in particolare, un diffeomorfismo. Questo conclude la dimostrazione.
+\end{ex}
+
+\begin{ex}[11.3]{Sia $ f \colon M \to N $ una isometria locale fra varietà riemanniane connesse che è anche un rivestimento. Mostra che $ M $ è completa $ \iff $ $ N $ è completa.}
+	
+	\begin{itemize}
+		\item[$ \Rightarrow $.] Mostriamo che le geodetiche di $ N $ sono definite per ogni tempo. Prendiamo un tratto di geodetica $ \gamma\colon I \to N $, questo, scelta una controimmagine di un suo punto, possiamo sollevarla al rivestimento
+		\[ \begin{tikzcd}
+		 & M \dar["f"] \\
+		 I \rar["\gamma" below] \arrow[ur, "\tilde{\gamma}", dashed] & N. 
+		\end{tikzcd} \]
+		Il sollevamento di questa curva rimane una geodetica, perché la sua immagine tramite un'isometria locale $ f(\tilde{\gamma}) $ lo è. Per completezza di $ M $, possiamo estendere $ \tilde{\gamma} $ a una geodetica definita su tutto $ \R $, la cui immagine tramite $ f $ sarà una geodetica che estende $ \gamma $, definita per ogni tempo.
+		
+		\item[$ \Leftarrow $.] Mostriamo che le geodetiche di $ M $ sono definite globalmente. Presa una geodetica $ \gamma $ di $ M $, la sua immagine $ f(\gamma) $ è una geodetica di $ N $, che si estende per completezza a una definita su tutto $ \R $. Possiamo poi sollevare questa geodetica massimale al rivestimento
+		\[ \begin{tikzcd}
+		& M \dar["f"] \\
+		\R \rar["\overline{f(\gamma)}" below] \arrow[ur, dashed] & N, 
+		\end{tikzcd} \]
+		volendo sollevando uno alla volta dei cammini di lunghezza fissata, che estendono il dominio di definizione di $ \gamma $ a tutto $ \R $.
+	\end{itemize}
+	 
+\end{ex}
+
+\end{document}

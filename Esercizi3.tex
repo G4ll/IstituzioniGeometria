@@ -15,12 +15,18 @@
 \begin{ex}[6.2]{Considera il toro $T = \S^1 \times \S^1 $ con coordinate $ (\theta^1, \theta^2) $ e la 1-forma $ \omega = d\theta^1 $. Considera la 1-sottovarietà $ \gamma_i  = \{\theta^i = 0 \} $ per $ i $ = 1, 2, orientata come $ \S^1 $. Mostra che \[\int_{\gamma_1} \omega =0, \qquad\qquad \int_{\gamma_2} \omega =2\pi.  \] }
 	Consideriamo l'embedding
 	\begin{align*}
-		i_1 \colon (0, 2\pi) & \to T \\
+		i_2 \colon (0, 2\pi) & \to T \\
 		t &\mapsto (t, 0)
 	\end{align*}
-	la cui immagine coincide con la varietà $ \gamma_1 $ a meno di un insieme misurabile (il punto (0, 0)) e il cui differenziale è, banalmente, $ (1, 0) $. Abbiamo dunque che
-	\[ \int_{\gamma_1} d\theta^1 = \int_{(0, 2\pi)} (i_1)_*d\theta^1 = \int_0^{2\pi} d\theta^1 \circ di_1 \]
-	
+	la cui immagine coincide con la varietà $ \gamma_2 $ a meno di un insieme misurabile (il punto (0, 0)). In altri termini, abbiamo scelto $ i_2 $ come la mappa che trasporta la coordinata $ t $ di $ (0, 2\pi) $ nella coordinata $ \theta^1 $ di $ T $, ovvero la mappa per cui $$  \theta^1 \circ i_2 = t.  $$ Abbiamo dunque, per il teorema di Stokes e la chain rule, che
+	\[ \int_{\gamma_2} d\theta^1 = \int_{(0, 2\pi)} (i_2)_*d\theta^1 = \int_{(0, 2\pi)} d\theta^1 \circ di_2 = \int_0^{2\pi} dt = 2\pi. \]
+	Analogamente, possiamo considerare l'embedding
+	\begin{align*}
+	i_1 \colon (0, 2\pi) & \to T \\
+	t &\mapsto (0, t),
+	\end{align*}
+	la cui immagine coincide con la varietà $ \gamma_1 $ a meno di un insieme misurabile. Questa volta abbiamo quindi che $ \theta^1 \circ i_2 = 0 $, da cui
+	\[ \int_{\gamma_1} d\theta^1 = \int_{(0, 2\pi)} (i_1)_*d\theta^1 = \int_{(0, 2\pi)} d\theta^1 \circ di_2 = \int_{(0, 2\pi)} 0 = 0. \]
 	% bisogna scrivere qualcosa in più
 \end{ex}
 
